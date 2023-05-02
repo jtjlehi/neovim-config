@@ -21,4 +21,7 @@ return require('packer').startup(function(use)
     }
     -- [[ Color Theme ]]
     use "ellisonleao/gruvbox.nvim"
+    -- [[ Git ]]
+    use 'tpope/vim-fugitive'
+    use 'airblade/vim-gitgutter'
 end)
