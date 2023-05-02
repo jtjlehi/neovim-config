@@ -14,7 +14,7 @@ vim.o.packpath = vim.o.packpath .. ',' .. packer_path
 -- PLUGINS
 -------------------------------------------------------------------------------
 
-require("plug")      
+require "plug"
 require("nvim-tree").setup()
 require("lualine").setup {
     options = { theme = "auto" },
@@ -26,12 +26,16 @@ require("lualine").setup {
     winbar = { lualine_a = { { 'buffers', mode = 4 } } },
     inactive_winbar = { lualine_a = { 'buffers' } },
 }
+require("nvim-treesitter.configs").setup {
+    highlight = { enable = true },
+    incremental_selection = { enable = true },
+    indent = { enable = true }
+}
 
 -------------------------------------------------------------------------------
 -- IMPORTS
 -------------------------------------------------------------------------------
 
-require("cmds")      -- Cmd
-require("vars")      -- Variables
-require("opts")      -- Options
-require("keys")      -- Keymaps
+require "cmds"      -- Cmd
+require "opts"      -- Options
+require "keys"      -- Keymaps

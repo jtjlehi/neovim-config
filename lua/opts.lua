@@ -29,3 +29,15 @@ vim.o.tabstop = 4                  -- num:  Number of spaces tabs count for
 -- [[ Splits ]]
 vim.o.splitright = true            -- bool: Place new window to right of current one
 vim.o.splitbelow = true            -- bool: Place new window below the current one
+
+-- [[ Folding ]]
+vim.api.nvim_create_autocmd(
+    {'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'},
+    { group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+    callback = function()
+        vim.opt.foldmethod     = 'expr'
+        vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+    end }
+)
+vim.g.foldmethod = "expr"
+vim.g.foldexpr = "nvim-treesitter#fold"
