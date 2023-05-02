@@ -31,6 +31,7 @@ require("lualine").setup {
 -- IMPORTS
 -------------------------------------------------------------------------------
 
+require("cmds")      -- Cmd
 require("vars")      -- Variables
 require("opts")      -- Options
 require("keys")      -- Keymaps
