@@ -2,11 +2,22 @@
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({buffer = bufnr})
+    lsp.default_keymaps({ buffer = bufnr })
     if client.supports_method('textDocument/formatting') then
         require "lsp-format".on_attach(client)
     end
 end)
+-- folding
+lsp.set_server_config({
+    capabilities = {
+        textDocument = {
+            foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true
+            }
+        }
+    }
+})
 
 --------------------------------------------------------------------------------
 -- Configure/Install Servers
@@ -28,7 +39,7 @@ local cmp = require "cmp"
 cmp.setup({
     mapping = {
         -- enter to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<C-Space'] = cmp.mapping.complete(),
     }
 })

@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
     use 'airblade/vim-gitgutter'
     -- [[ LSP ]]
     use "lukas-reineke/lsp-format.nvim"
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
