@@ -31,6 +31,8 @@ require("nvim-treesitter.configs").setup {
     incremental_selection = { enable = true },
     indent = { enable = true }
 }
+require "autoclose".setup()
+require "lsp"       -- imported from local config file
 
 -------------------------------------------------------------------------------
 -- IMPORTS
