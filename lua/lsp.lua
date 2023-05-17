@@ -15,7 +15,7 @@ local lspconfig = require 'lspconfig'
 
 lsp.ensure_installed({
     'rust_analyzer',
-    'lua-language-server',
+    'lua_ls',
 })
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())

@@ -1,5 +1,4 @@
 --[[ init.lua ]]
-
 -- LEADER
 -- These keybindings need to be defined before the first /
 -- is called; otherwise, it will default to "\"
@@ -20,7 +19,7 @@ require("lualine").setup {
     options = { theme = "auto" },
     sections = {
         lualine_x = { 'filetype' },
-        lualine_y = { },
+        lualine_y = {},
     },
     tabline = { lualine_a = { "tabs" } },
     winbar = { lualine_a = { { 'buffers', mode = 4 } } },
@@ -32,12 +31,16 @@ require("nvim-treesitter.configs").setup {
     indent = { enable = true }
 }
 require "autoclose".setup()
-require "lsp"       -- imported from local config file
+require "lsp" -- imported from local config file
+require "indent_blankline".setup {
+    show_current_context = true,
+    show_current_context_start = true,
+}
 
 -------------------------------------------------------------------------------
 -- IMPORTS
 -------------------------------------------------------------------------------
 
-require "cmds"      -- Cmd
-require "opts"      -- Options
-require "keys"      -- Keymaps
+require "cmds" -- Cmd
+require "opts" -- Options
+require "keys" -- Keymaps

@@ -9,40 +9,42 @@ return require('packer').startup(function(use)
         requires = 'kyazdani42/nvim-web-devicons'
     }
     use 'mhinz/vim-startify' -- start screen
-    -- statusline
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = 'kyazdani42/nvim-web-devicons'
-    }
     -- [[ Tree Sitter ]]
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ":TSUpdate"
     }
-    -- [[ Color Theme ]]
+    -- [[ Color Theme/Stylying ]]
     use "ellisonleao/gruvbox.nvim"
+    -- statusline
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = 'kyazdani42/nvim-web-devicons'
+    }
+    use "lukas-reineke/indent-blankline.nvim"
     -- [[ Git ]]
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
     -- [[ LSP ]]
+    use "lukas-reineke/lsp-format.nvim"
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         requires = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},
+            { 'neovim/nvim-lspconfig' },
             {
                 'williamboman/mason.nvim',
-                run = function ()
+                run = function()
                     pcall(vim.cmd, 'MasonUpdate')
                 end,
             },
-            {'williamboman/mason-lspconfig.nvim'},
+            { 'williamboman/mason-lspconfig.nvim' },
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'L3MON4D3/LuaSnip'},
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'L3MON4D3/LuaSnip' },
         }
     }
     -- [[ Autocompletion ]]
