@@ -14,28 +14,29 @@ vim.o.packpath = vim.o.packpath .. ',' .. packer_path
 -------------------------------------------------------------------------------
 
 require "plug"
-require("nvim-tree").setup()
-require("lualine").setup {
-    options = { theme = "auto" },
-    sections = {
-        lualine_x = { 'filetype' },
-        lualine_y = {},
-    },
-    tabline = { lualine_a = { "tabs" } },
-    winbar = { lualine_a = { { 'buffers', mode = 4 } } },
-    inactive_winbar = { lualine_a = { 'buffers' } },
+require "nvim-tree".setup()
+require "lualine".setup {
+	options = { theme = "auto" },
+	sections = {
+		lualine_x = { 'filetype' },
+		lualine_y = {},
+	},
+	tabline = { lualine_a = { "tabs" } },
+	winbar = { lualine_a = { { 'buffers', mode = 4 } } },
+	inactive_winbar = { lualine_a = { 'buffers' } },
 }
-require("nvim-treesitter.configs").setup {
-    highlight = { enable = true },
-    incremental_selection = { enable = true },
-    indent = { enable = true }
+require "nvim-treesitter.configs".setup {
+	highlight = { enable = true },
+	incremental_selection = { enable = true },
+	indent = { enable = true }
 }
 require "autoclose".setup()
 require "lsp" -- imported from local config file
 require "indent_blankline".setup {
-    show_current_context = true,
-    show_current_context_start = true,
+	show_current_context = true,
+	show_current_context_start = true,
 }
+require "Comment".setup()
 
 -------------------------------------------------------------------------------
 -- IMPORTS

@@ -35,7 +35,7 @@ vim.o.splitbelow = true -- bool: Place new window below the current one
 -- [[ Folding ]]
 vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
-vim.o.foldlevelstart = 2
+vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 -- Using ufo provider need remap `zR` and `zM`.

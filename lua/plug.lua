@@ -48,6 +48,13 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
+    use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
     -- [[ Autocompletion ]]
     use 'm4xshen/autoclose.nvim'
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 end)

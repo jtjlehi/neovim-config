@@ -2,10 +2,13 @@
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({ buffer = bufnr })
+    local opts = { buffer = bufnr }
+    lsp.default_keymaps(opts)
     if client.supports_method('textDocument/formatting') then
         require "lsp-format".on_attach(client)
     end
+    -- key bindings
+    vim.keymap.set({ 'n', 'v' }, '<Leader>c', vim.lsp.buf.code_action, opts)
 end)
 -- folding
 lsp.set_server_config({
@@ -31,6 +34,21 @@ lsp.ensure_installed({
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
+-- metals for scala
+
+local metals_config = require("metals").bare_config()
+
+metals_config.settings = {
+    showImplicitArguments = true,
+    excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+}
+
+local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "scala", "sbt", "java" },
+    callback = function() require("metals").initialize_or_attach({}) end,
+    group = nvim_metals_group,
+})
 --------------------------------------------------------------------------------
 -- Auto Completion
 --------------------------------------------------------------------------------
