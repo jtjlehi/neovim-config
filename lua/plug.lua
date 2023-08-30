@@ -66,4 +66,9 @@ return require('packer').startup(function(use)
             require("toggleterm").setup()
         end
     }
+    -- [[Telescope]]
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
 end)

@@ -29,6 +29,13 @@ vim.keymap.set('n', L .. L, function()
         vim.cmd('cd ~/' .. settingsPath)
     end
 end)
+-- Telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', 'ff', builtin.find_files)
+vim.keymap.set('n', 'fe', builtin.diagnostics)
+vim.keymap.set('n', 'fg', builtin.live_grep)
+vim.keymap.set('n', 'fb', builtin.buffers)
+vim.keymap.set('n', 'f<C-O>', builtin.jumplist)
 
 -------------------------------------------------------------------------------
 -- NORMAL MODE
