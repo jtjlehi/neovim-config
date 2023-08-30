@@ -16,9 +16,7 @@ vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', L .. 'n', function() vim.cmd('NvimTreeToggl') end)
 -- Clear Search
 vim.keymap.set('n', L .. 'cs', function() vim.cmd('nohlsearch') end)
--- Open terminal
-vim.keymap.set('n', L .. 't', function() vim.cmd('term') end)
--- show errors
+-- Show Errors
 vim.keymap.set('n', L .. 'e', vim.diagnostic.open_float)
 -- Toggle Settings
 vim.keymap.set('n', L .. L, function()
@@ -31,3 +29,9 @@ vim.keymap.set('n', L .. L, function()
         vim.cmd('cd ~/' .. settingsPath)
     end
 end)
+
+-------------------------------------------------------------------------------
+-- NORMAL MODE
+-------------------------------------------------------------------------------
+vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
+vim.keymap.set('t', 'jj', [[<C-\><C-n>]])

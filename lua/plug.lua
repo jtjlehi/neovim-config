@@ -59,4 +59,11 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+    -- [[Toggle Term]]
+    use {
+        "akinsho/toggleterm.nvim",
+        config = function()
+            require("toggleterm").setup()
+        end
+    }
 end)
