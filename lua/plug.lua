@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
     use 'airblade/vim-gitgutter'
     -- [[ LSP ]]
     use "lukas-reineke/lsp-format.nvim"
+    use 'neovim/nvim-lspconfig'
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -48,6 +49,7 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
+    use 'simrat39/rust-tools.nvim'
     use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
     -- [[ Autocompletion ]]
     use 'm4xshen/autoclose.nvim'

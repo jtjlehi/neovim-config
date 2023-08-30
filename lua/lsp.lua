@@ -34,6 +34,27 @@ lsp.ensure_installed({
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
+-- rust_analyzer
+local rt = require("rust-tools")
+rt.setup({
+    server = {
+        on_attach = function(_, bufnr)
+            -- Hover actions
+            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            -- Code action groups
+            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+        end,
+        settings = {
+            ["rust-analyzer"] = {
+                check = {
+                    command = "clippy",
+                    extraArgs = { "--all", "--", "-D", "clippy::all" },
+                },
+            },
+        },
+    },
+})
+
 -- metals for scala
 
 local metals_config = require("metals").bare_config()
