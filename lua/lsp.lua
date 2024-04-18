@@ -9,6 +9,7 @@ lsp.on_attach(function(client, bufnr)
     end
     -- key bindings
     vim.keymap.set({ 'n', 'v' }, '<Leader>c', vim.lsp.buf.code_action, opts)
+    vim.keymap.set({ 'n', 'v' }, '<Leader>r', vim.lsp.buf.rename)
 end)
 -- folding
 lsp.set_server_config({
@@ -37,6 +38,9 @@ lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 -- rust_analyzer
 local rt = require("rust-tools")
 rt.setup({
+    tools = {
+        inlay_hints = { only_current_line = true }
+    },
     server = {
         on_attach = function(_, bufnr)
             -- Hover actions
@@ -67,9 +71,37 @@ metals_config.settings = {
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "scala", "sbt", "java" },
-    callback = function() require("metals").initialize_or_attach({}) end,
+    callback = function()
+        require("metals").initialize_or_attach(metals_config)
+    end,
     group = nvim_metals_group,
 })
+
+-- haskell-tools
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+    callback = function()
+        local ht = require('haskell-tools')
+        local bufnr = vim.api.nvim_get_current_buf()
+        local opts = { noremap = true, silent = true, buffer = bufnr, }
+        -- haskell-language-server relies heavily on codeLenses,
+        -- so auto-refresh (see advanced configuration) is enabled by default
+        vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run, opts)
+        -- Hoogle search for the type signature of the definition under the cursor
+        vim.keymap.set('n', '<space>hs', ht.hoogle.hoogle_signature, opts)
+        -- Evaluate all code snippets
+        vim.keymap.set('n', '<space>ea', ht.lsp.buf_eval_all, opts)
+        -- Toggle a GHCi repl for the current package
+        vim.keymap.set('n', '<leader>rr', ht.repl.toggle, opts)
+        -- Toggle a GHCi repl for the current buffer
+        vim.keymap.set('n', '<leader>rf', function()
+            ht.repl.toggle(vim.api.nvim_buf_get_name(0))
+        end, opts)
+        vim.keymap.set('n', '<leader>rq', ht.repl.quit, opts)
+    end
+})
+
 --------------------------------------------------------------------------------
 -- Auto Completion
 --------------------------------------------------------------------------------

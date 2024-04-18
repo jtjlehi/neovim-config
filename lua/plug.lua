@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ":TSUpdate"
     }
+    use { "HiPhish/rainbow-delimiters.nvim" }
     -- [[ Color Theme/Stylying ]]
     use "ellisonleao/gruvbox.nvim"
     -- statusline
@@ -21,7 +22,7 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = 'kyazdani42/nvim-web-devicons'
     }
-    use "lukas-reineke/indent-blankline.nvim"
+    use { "lukas-reineke/indent-blankline.nvim", main = "ibl" }
     -- [[ Git ]]
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
@@ -51,8 +52,15 @@ return require('packer').startup(function(use)
     }
     use 'simrat39/rust-tools.nvim'
     use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
+    use {
+        'mrcjkb/haskell-tools.nvim',
+        ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+    }
     -- [[ Autocompletion ]]
-    use 'm4xshen/autoclose.nvim'
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -69,6 +77,17 @@ return require('packer').startup(function(use)
     -- [[Telescope]]
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { "nvim-telescope/telescope-live-grep-args.nvim" },
+        },
+        config = function()
+            require("telescope").load_extension("live_grep_args")
+        end
     }
+    -- [[Markdown]]
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
 end)

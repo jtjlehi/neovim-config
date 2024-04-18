@@ -3,8 +3,13 @@
 vim.o.colorcolumn = '80'    -- str:  Show col for max line length
 vim.o.number = true         -- bool: Show line numbers
 vim.o.relativenumber = true -- bool: Show relative line numbers
-vim.o.scrolloff = 4         -- int:  Min num lines of context
+vim.o.scrolloff = 1         -- int:  Min num lines of context
 vim.o.signcolumn = "yes"    -- str:  Show the sign column
+
+-- [[ Spellchecker ]]
+vim.o.spell = true
+vim.o.spelllang = 'en'
+vim.o.spelloptions = 'camel'
 
 -- [[ Filetypes ]]
 vim.o.encoding = 'utf8'     -- str:  String encoding to use
