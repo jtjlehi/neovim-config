@@ -28,9 +28,17 @@ lsp.set_server_config({
 --------------------------------------------------------------------------------
 local lspconfig = require 'lspconfig'
 
-lsp.ensure_installed({
-    'rust_analyzer',
-    'lua_ls',
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'rust_analyzer',
+        'lua_ls',
+    },
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+    },
 })
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
