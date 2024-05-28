@@ -41,12 +41,12 @@ require("lazy").setup({
     "lukas-reineke/lsp-format.nvim",
     'neovim/nvim-lspconfig',
     { 'neovim/nvim-lspconfig' },
-    {
-        'williamboman/mason.nvim',
-        build = function()
-            pcall(vim.cmd, 'MasonUpdate')
-        end,
-    },
+    -- {
+    --     'williamboman/mason.nvim',
+    --     build = function()
+    --         pcall(vim.cmd, 'MasonUpdate')
+    --     end,
+    -- },
     { 'williamboman/mason-lspconfig.nvim' },
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },

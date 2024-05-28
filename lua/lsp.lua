@@ -28,20 +28,19 @@ lsp.set_server_config({
 --------------------------------------------------------------------------------
 local lspconfig = require 'lspconfig'
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = {
-        'rust_analyzer',
-        'lua_ls',
-    },
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    },
-})
-
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+
+-- Nix LSP (nil)
+
+lspconfig.nil_ls.setup {
+    autostart = true,
+    cmd = { 'nil' },
+    settings = {
+        ['nil'] = {
+            formatting = { command = { "alejandra" } }
+        }
+    }
+}
 
 -- rust_analyzer
 local rt = require("rust-tools")
